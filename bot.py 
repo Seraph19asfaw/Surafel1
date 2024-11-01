@@ -1,0 +1,38 @@
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
+# Your token from BotFather
+TELEGRAM_TOKEN = ' 7322594950:AAFS4FOOYCdDnJy6VZUM4-6T86_mA18pxjQ '
+
+def start(update, context):
+    """Send a message when the command /start is issued."""
+    update.message.reply_text('Welcome! to santim .')
+
+def help_command(update, context):
+    """Send a message when the command /help is issued."""
+    update.message.reply_text('Send /distribute to receive your token.')
+
+def distribute(update, context):
+    """Simulate token distribution (you'll add your logic here)."""
+    # Add logic to distribute tokens to the user here
+    update.message.reply_text('Token distribution in progress!')
+
+def main():
+    """Start the bot."""
+    updater = Updater(TELEGRAM_TOKEN, use_context=True)
+
+    # Get the dispatcher to register handlers
+    dp = updater.dispatcher
+
+    # Register handlers for commands
+    dp.add_handler(CommandHandler("start", start))
+    dp.add_handler(CommandHandler("help", help_command))
+    dp.add_handler(CommandHandler("distribute", distribute))
+
+    # Start the Bot
+    updater.start_polling()
+
+    # Run the bot until you press Ctrl+C
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
